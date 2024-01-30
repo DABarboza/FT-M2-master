@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .contenidos {
+        background-color: bisque;
+        color: grey;
+      }
+      .otros {
+        background-color: rgb(246, 178, 178);
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Clase de DOM</h1>
+
+    <!-- <div class="contenidos">
+      <p class="contenido">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumeda, omnis
+        odit? Commodi non modi doloremque similique ipsa dicta, quod in
+        voluptate tempore officiis culpa labore vitae! Sequi explicabo suscript
+        laudantium!
+      </p>
+      <p class="contenido">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumeda, omnis
+        odit? Commodi non modi doloremque similique ipsa dicta, quod in
+        voluptate tempore officiis culpa labore vitae! Sequi explicabo suscript
+        laudantium!
+      </p>
+    </div>
+    <div class="otros">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumeda, omnis
+        odit? Commodi non modi doloremque similique ipsa dicta, quod in
+        voluptate tempore officiis culpa labore vitae! Sequi explicabo suscript
+        laudantium!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumeda, omnis
+        odit? Commodi non modi doloremque similique ipsa dicta, quod in
+        voluptate tempore officiis culpa labore vitae! Sequi explicabo suscript
+        laudantium!
+      </p>
+    </div> -->
+
+    <button id="boton">Click Me</button>
+
+    <script>
+      var boton = document.querySelector("#boton");
+
+      function cambiarClase(event) {
+        var div = event.target;
+        if (div.className == "contenidos") {
+          div.className = "otros";
+        } else {
+          div.className = "contenidos";
+        }
+      }
+
+      function clickHahdler() {
+        var div = document.createElement("div");
+        var parrafo = document.createElement("p");
+
+        parrafo.innerText =
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumeda, omnis odit? Commodi non modi doloremque similique ipsa dicta, quod in voluptate tempore officiis culpa labore vitae! Sequi explicabo suscript laudantium!";
+
+        div.appendChild(parrafo);
+
+        div.className = "contenidos";
+        div.addEventListener("click", cambiarClase);
+
+        document.querySelector("body").appendChild(div);
+      }
+      boton.addEventListener("click", clickHahdler);
+    </script>
+  </body>
+</html>
