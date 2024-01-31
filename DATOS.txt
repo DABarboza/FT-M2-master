@@ -1,0 +1,14 @@
+QUE ES DOM
+
+En javascript DOM es el Modelo de Objeto de un documento, es una interfaz de programacion para HTML.
+
+Que es el DOM element Selector
+
+Los eventos son las interacciones entre el HTML y el JAVASCRIPT, Cuando se lanza un evento, el navegador notifica a la api que ha ocurrido algo
+y que se debe manejar.
+
+DOM event
+
+Los eventos son cosas que pasan en el sistema que estás programando, el cual se encarga de avisarte para que tu código pueda hacer algo 
+al respecto. Por ejemplo, si el usuario hace clic en el botón de una página web, puede que quieras reaccionar a esa acción y 
+mostrar una tarjeta con información.

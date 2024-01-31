@@ -1,70 +1,95 @@
-// Crear un array vacío llamado 'toDoItems'
+// *Crear un array vacío llamado 'toDoItems'
 // Tu codigo acá:
-
+var toDoItems = [];
 
 // En la página 'index.html' hay un elemento span cuyo texto es 'Aplicación creada por:'.
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
-// agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
+// *agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
 
-// Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
+document.querySelector("#createdBy").innerHTML =
+  "Aplicacion creada por: Daniel";
+
+// *Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
-// Agregar dos propiedades a la clase:
+// *Agregar dos propiedades a la clase:
 // 1) 'description' : debe ser igual a la descripción pasada como parámetro al constructor
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
-
 function ToDo(description) {
   // Tu código acá:
+  this.description = description;
+  this.complete = false;
 }
 
-// Agregar un método denominado 'completeToDo' al prototipo de la clase ToDo
+// *Agregar un método denominado 'completeToDo' al prototipo de la clase ToDo
 // No requiere ningún argumento
-// Debe setear el atributo 'complete' del ToDo en true
+// *Debe setear el atributo 'complete' del ToDo en true
 
 // Tu código acá:
+ToDo.prototype.completeToDo = function () {
+  this.complete = true;
+};
 
 // Agregar dos parámetros a la función 'buildToDo':
 //    1) Un objeto de la clase ToDo
 //    2) Index numérico
 //
 // La función debe realizar lo siguiente:
-//    1) Crear un elemento 'div' y asignárselo a una variable denominada 'toDoShell'
-//    2) Asignarle a 'toDoShell' la clase 'toDoShell'
-//    3) Crear un elemento 'span' y asignárselo a una variable denominada 'toDoText'
-//    4) Utilizando el objeto toDo pasado como argumento, setear el 'toDoText' innerHTML
+//*    1) Crear un elemento 'div' y asignárselo a una variable denominada 'toDoShell'
+// *   2) Asignarle a 'toDoShell' la clase 'toDoShell'
+// *   3) Crear un elemento 'span' y asignárselo a una variable denominada 'toDoText'
+//*    4) Utilizando el objeto toDo pasado como argumento, setear el 'toDoText' innerHTML
 //       asignándole el valor de la propiedad 'description' del objeto ToDo.
-//    5) Asignarle como id del 'toDoText' el valor 'index' recibido como argumento
-//    6) En función del atributo 'complete' del objeto ToDo recibido como argumento:
+//*    5) Asignarle como id del 'toDoText' el valor 'index' recibido como argumento
+//*    6) En función del atributo 'complete' del objeto ToDo recibido como argumento:
 //          - Si es true: asignarle a 'toDoText' la clase 'completeText'
 //          - Si es false: no asignarle ninguna clase
-//    7) Agregar 'toDoText' como hijo de 'toDoShell'
-//    8) Devolver la variable toDoShell
+//*    7) Agregar 'toDoText' como hijo de 'toDoShell'
+//*    8) Devolver la variable toDoShell
 
 function buildToDo(todo, index) {
   // Tu código acá:
+  var toDoShell = document.createElement("div");
+  toDoShell.className = "toDoShell";
+  var toDoText = document.createElement("span");
+
+  toDoText.innerHTML = todo.description;
+  toDoText.id = index;
+
+  if (ToDo.complete === true) {
+    toDoText.className = "completeText";
+  }
+  toDoText.appendChild = toDoShell;
+  return toDoShell;
 }
 
-// La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
-// Recibirá como parámetro un array de objetos ToDo
-// Utilizar el método map usando la función previamente creada ('buildToDo')
-// Devolver el nuevo array
+//* La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
+//* Recibirá como parámetro un array de objetos ToDo
+//* Utilizar el método map usando la función previamente creada ('buildToDo')
+//* Devolver el nuevo array
 
 function buildToDos(toDos) {
   // Tu código acá:
+  console.log(toDos);
+  var array = [];
+  return Array.from(toDos).map(buildToDo);
 }
 
 // La función 'displayToDos' se va a encargar de que se vean los toDo's en pantalla
-//  1) Seleccionr el elemento cuyo id es 'toDoContainer' y almacenarlo en una variable denominada 'toDoContainer'
-//  2) Setear el innerHTML de 'toDoContainer' como un string vacio ("")
-//  3) Llamar a la función previemante creada 'buildToDos' pasándole como argumento el array toDoItems
-//  4) Iterar sobre el resultado devuelto por la función 'buildToDos' e ir agregndo cada elemento a 'toDoContainer'
-//  5) Al final de este archivo, antes de la línea que dice "NO CAMBIES NADA DE ACÁ PARA ABAJO" escribe una
+//*  1) Seleccionr el elemento cuyo id es 'toDoContainer' y almacenarlo en una variable denominada 'toDoContainer'
+//*  2) Setear el innerHTML de 'toDoContainer' como un string vacio ("")
+//*  3) Llamar a la función previemante creada 'buildToDos' pasándole como argumento el array toDoItems
+//*  4) Iterar sobre el resultado devuelto por la función 'buildToDos' e ir agregndo cada elemento a 'toDoContainer'
+//*  5) Al final de este archivo, antes de la línea que dice "NO CAMBIES NADA DE ACÁ PARA ABAJO" escribe una
 //     línea para hacer el llamado a esta funcion (displayToDos)
-//  6) Abrir o en el caso de ya tenerlo abierto, recargar, la página
+//*  6) Abrir o en el caso de ya tenerlo abierto, recargar, la página
 
 function displayToDos() {
   // Tu código acá:
+  var toDoContainer = document.querySelector("#toDoContainer");
+  toDoContainer.innerHTML = "";
+  console.log(buildToDos(toDoItems));
 }
 
 // La función 'addToDo' agregará un nuevo ToDo al array 'toDoItems'
@@ -120,6 +145,7 @@ function completeToDo(event) {
 // ********************************************** ----------- ********************************************** //
 
 // Acá debes insertar la llamada a 'displayToDos'
+displayToDos();
 
 // ---------------------------- NO CAMBIES NADA DE ACÁ PARA ABAJO ----------------------------- //
 if (typeof module !== "undefined") {
