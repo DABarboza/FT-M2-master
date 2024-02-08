@@ -2,13 +2,13 @@
 
 .home {
   .intro {
-    h2 {
-      padding: 15px;
-    }
-
     img {
       border-radius: 15px;
       margin-top: 5px;
+    }
+
+    h2 {
+      padding: 15px;
     }
 
     p {
@@ -61,6 +61,9 @@
 
       .btn {
         .btn-mixin(@btn-bg-color, @wild-sand);
+        &:hover {
+          .btn-mixin(@wild-sand, @btn-bg-color);
+        }
       }
     }
 
@@ -72,6 +75,49 @@
         width: 100%;
         height: auto;
         border-radius: 10px;
+      }
+    }
+  }
+}
+
+@media @phone {
+  .home {
+    .intro {
+      img {
+        width: 100%;
+        padding: 0px 10px 0px 10px;
+      }
+    }
+
+    .music-images {
+      .tecnologia,
+      .ondas {
+        display: none;
+      }
+
+      .auricular {
+        width: 100%;
+      }
+    }
+
+    .actual {
+      .flex(column-reverse);
+      padding: 10px;
+
+      .actual-text,
+      .actual-img {
+        width: 100%;
+
+        .btn {
+          width: 100%;
+          text-align: center;
+
+          &:hover {
+            width: 100%;
+            text-align: center;
+            background-color: @btn-bg-color;
+          }
+        }
       }
     }
   }

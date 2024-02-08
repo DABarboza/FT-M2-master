@@ -1,12 +1,16 @@
 // Mixins acá
-.flex(@direction: row, @justify, @align) {
+.flex(@direct: row, @justify: center, @align: center) {
   display: flex;
-  flex-direction: @direction;
+  flex-direction: @direct;
   justify-content: @justify;
   align-items: @align;
 }
-.btn-mixin(@bg-color, @font-color) {
-  background-color: @bg-color;
+.btn-mixin(@colorDeFondo, @font-color) {
+  background-color: @colorDeFondo;
   color: @font-color;
   border-radius: 5px;
+  width: min-content;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
 }
