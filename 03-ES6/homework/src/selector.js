@@ -4,11 +4,19 @@ var traverseDomAndCollectElements = function (matchFunc, startEl) {
   if (typeof startEl === "undefined") {
     startEl = document.body;
   }
-
   // recorre el árbol del DOM y recolecta elementos que matchien en resultSet
   // usa matchFunc para identificar elementos que matchien
-
   // TU CÓDIGO AQUÍ
+
+  if (matchFunc(startEl)) {
+    resultSet.push(startEl);
+  }
+  for (let i = 0; i < startEl.children.length; i++) {
+    let child = startEl.children[i];
+    let elementFound = traverseDomAndCollectElements(matchFunc, child);
+    resultSet = [...resultSet, ...elementFound];
+  }
+  return resultSet;
 };
 
 // Detecta y devuelve el tipo de selector
@@ -16,6 +24,16 @@ var traverseDomAndCollectElements = function (matchFunc, startEl) {
 
 var selectorTypeMatcher = function (selector) {
   // tu código aquí
+  if (selector.includes("#")) {
+    return "id";
+  }
+  if (selector[0] === ".") {
+    return "class";
+  }
+  if (selector.includes(".")) {
+    return "tag.class";
+  }
+  return "tag";
 };
 
 // NOTA SOBRE LA FUNCIÓN MATCH
@@ -27,9 +45,18 @@ var matchFunctionMaker = function (selector) {
   var selectorType = selectorTypeMatcher(selector);
   var matchFunction;
   if (selectorType === "id") {
+    matchFunction = (el) => el.id === selector.substring(1);
   } else if (selectorType === "class") {
+    matchFunction = (el) => el.classList.contains(selector.substring(1));
   } else if (selectorType === "tag.class") {
+    matchFunction = (el) => {
+      let [tag, className] = selector.split(".");
+      return (
+        matchFunctionMaker(tag)(el) && matchFunctionMaker("." + className)(el)
+      );
+    };
   } else if (selectorType === "tag") {
+    matchFunction = (el) => el.tagName.toLowerCase() === selector;
   }
   return matchFunction;
 };
@@ -41,5 +68,4 @@ var $ = function (selector) {
   return elements;
 };
 
-$(".clasecualquiera");
-$;
+$("#pagetitle");
