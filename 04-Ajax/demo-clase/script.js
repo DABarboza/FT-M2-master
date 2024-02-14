@@ -7,7 +7,7 @@ const listaUsuarios = document.querySelector("#listaUsuarios");
 
 const createListItem = (user) => {
   const li = document.createElement("li");
-  li.innerHTML = user.name;
+  li.innerHTML = `${user.name} - ${user.email}`;
   listaUsuarios.appendChild(li);
 };
 
