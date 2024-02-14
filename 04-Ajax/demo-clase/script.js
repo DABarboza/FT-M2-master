@@ -17,6 +17,12 @@ const showUsers = (users) => {
 
 $.get(`${URL_BASE}/users`, showUsers);
 
+$.ajax({
+  url: `${URL_BASE}/users`,
+  type: "DELETE",
+  success: showUsers,
+});
+
 // yo quiero hacer una peticion...
 // necesito peele a una web api que la haga por mi
 // quien es esta web api? AJAX ==> $
