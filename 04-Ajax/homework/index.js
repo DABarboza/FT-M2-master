@@ -1,3 +1,5 @@
+//* EVENTOS
+
 document.addEventListener("DOMContentLoaded", function () {
   const boton = document.getElementById("boton");
   boton.addEventListener("click", obtenerYMostrarAmigos);
@@ -5,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   const botonBuscar = document.getElementById("search");
   botonBuscar.addEventListener("click", buscarAmigoPorId);
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const botonBorrar = document.getElementById("delete");
+  botonBorrar.addEventListener("click", borrarAmigoPorId);
 });
 
 //* FUNCIONES GET LISTA AMIGOS
@@ -31,7 +37,7 @@ function agregarAmigoALista(amigo) {
 //* FUNCIONES MOSTRAR AMIGO POR ID
 
 function buscarAmigoPorId() {
-  const inputId = document.getElementById("idAmigo");
+  const inputId = document.getElementById("input");
   const id = inputId.value;
 
   fetch(`http://localhost:5000/amigos/${id}`)
@@ -41,10 +47,23 @@ function buscarAmigoPorId() {
 
 function mostrarAmigoEnDOM(amigo) {
   const amigoSpan = document.getElementById("amigo");
-  amigoSpan.textContent = `Nombre: ${amigo.nombre}, Edad: ${amigo.edad}`;
+  amigoSpan.textContent = amigo.name;
 }
 
 function mostrarResultadoBusqueda(amigo) {
   const resultadoParrafo = document.getElementById("resultadoBusqueda");
   resultadoParrafo.textContent = `Resultado de la búsqueda: Nombre: ${amigo.nombre}, Edad: ${amigo.edad}`;
+}
+
+//* FUNCIONES DELETE
+
+function borrarAmigoPorId() {
+  const id = $("#inputDelete").val();
+  $.ajax({
+    url: `http://localhost:5000/amigos/${id}`,
+    type: "DELETE",
+    success: function () {
+      $("#success").text("Amigo eliminado");
+    },
+  });
 }
