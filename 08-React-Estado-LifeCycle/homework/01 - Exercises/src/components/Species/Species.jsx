@@ -3,5 +3,18 @@ import React from "react";
 
 export default function Species({ species, handleSpecies, handleAllSpecies }) {
   // console.log(species);
-  return <div></div>
+  return (
+    <div>
+      <h2>Species</h2>
+      {species.map((specie) => (
+        <button
+          key={specie}
+          value={specie}
+          onClick={() => handleSpecies(specie)}>
+          {specie}
+        </button>
+      ))}
+      <button onClick={handleAllSpecies}>All Animals</button>
+    </div>
+  );
 }
