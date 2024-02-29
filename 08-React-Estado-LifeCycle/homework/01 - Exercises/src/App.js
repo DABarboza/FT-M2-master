@@ -3,7 +3,7 @@ import Zoo from "./components/Zoo/Zoo.jsx";
 
 export default function App() {
   return (
-    <div>
+    <div >
       <Zoo />
     </div>
   );
